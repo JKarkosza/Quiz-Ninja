@@ -8,33 +8,38 @@ document.addEventListener('DOMContentLoaded', function(){
     ["What is Batman's real name?", "Bruce Wayne"]
   ];
 
-  let score = 0;
+  function start(quiz) {
+    let score = 0;
 
-  for( const [question, answer] of quiz){
-    const response = prompt( question );
-    if( response === answer) {
-      alert('Correct');
-      score++;
-    } else {
-      alert(`Wrong! The correct answer was ${answer}`);
+    //main game loop
+    for( const [question, answer] of quiz) {
+      const response = ask( question);
+      check( response, answer);
     }
-  };
 
-  alert(`Game Over, you scored ${score} point${score !==1 ? 's' : ''}`);
+    //end of main game loop
 
+    gameOver();
 
-const tablica = [
-  [1,2],
-  [3,4],
-  [5,6]
-];
+    //function declarations
+    function ask( question) {
+      return prompt( question);
+    }
 
-for(const [val1, val2] of tablica) {
-  console.log(val1 + val2);
-}
+    function check( response, answer ) {
+      if( response === answer ){
+        alert('Correct');
+        score++;
+      } else {
+        alert(`Wrong! The correct answer was ${answer}`);
+      }
+    }
 
-
-
+    function gameOver() {
+      alert(`Game Over, you scored ${score} point${score !==1 ? 's' : ''}`)
+    }
+  }
+  start(quiz);
 
 
 
